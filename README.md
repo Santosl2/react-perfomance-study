@@ -21,6 +21,28 @@ Basicamente o memo funciona assim:
 
 # useMemo
 
+- O useMemo só recuperará o valor memorizado quando o array receber uma atualização. Esta otimização ajuda a evitar cálculos caros em cada renderização.
+- Se nenhum array for fornecida, um novo valor será calculado em cada renderização.
+- Evitar re-calcular algo complexo
+
+## Quando usar useMemo
+
+- Para resolver problemas de igualdade referencial.
+  - Igualdade referencial verifica se a função está na mesma posição da memória
+
 # useCallback
 
-- Irá "cachear" a função, e só será atualizada quando uma das props do array de dependência for alterado, caso contrário será a mesma função desde o primeiro render.
+- Irá memorizar a função, e só será atualizada quando uma das props do array de dependência for alterado, caso contrário será a mesma função desde o primeiro render.
+
+## Quando usar useCallback
+
+- Quando a função passa para vários outros components ou então essa função está dentro de um contexto
+- Para resolver problemas de igualdade referencial.
+  - Igualdade referencial verifica se a função está na mesma posição da memória
+
+# Shallow Compare
+
+- Usado no memo, useMemo
+- Comparação rasa, apenas verificar se teve alguma alteração o componente, usando o operador ===
+
+* Essa comparação se limita apenas string, inteiro, booleans, e float, visto que array comparado com array (ou objeto com objeto) retorna sempre false no javascript
